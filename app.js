@@ -5,10 +5,12 @@ const fetch = require('node-fetch');
 
 const app = express();
 
-app.get('/shops', async function(request, response) {
+app.get('/books/:ean/shops', async function(request, response) {
+
+  const ean = request.params.ean;
 
   // Get shop list for this EAN
-  const res  = await fetch('https://www.placedeslibraires.fr/getshoplist.php?ISBN=9782953595109&typeproduit=0&gencod=9782953595109&dispo=1&rid=&geoLat=&geoLon=');
+  const res  = await fetch(`https://www.placedeslibraires.fr/getshoplist.php?ISBN=${ean}`);
   const json = await res.json();
 
   // Filter shop list to get only those with available stock
