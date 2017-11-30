@@ -39,5 +39,7 @@ app.get('/books/:ean/shops', async function(request, response) {
   response.json(result);
 });
 
-app.listen(3000, () => process.stdout.write('Server listening on port 3000!\n'));
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => process.stdout.write(`Server listening on port ${port}!\n`));
 
