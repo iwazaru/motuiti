@@ -8,12 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "8.9.1"
+    "node": "^8.12.0"
   },
   "author": "Clément Bourgoin <cb@nokto.net>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2",
     "node-fetch": "^1.7.3"
   }
 }
