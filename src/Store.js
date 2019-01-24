@@ -12,12 +12,14 @@ export default function Store({
 }) {
   return (
     <div className="Store">
-      {logo && <img src={logo} alt={name} />}
-      <div dangerouslySetInnerHTML={{ __html: name }} />
-      <div dangerouslySetInnerHTML={{ __html: address }} />
-      {postalCode} {city}
-      <br />
-      {phone}
+      <div className="logo">{logo && <img src={logo} alt={name} />}</div>
+      <div className="data">
+        <div dangerouslySetInnerHTML={{ __html: name }} />
+        <div dangerouslySetInnerHTML={{ __html: address }} />
+        {postalCode} {city}
+        <br />
+        {phone}
+      </div>
     </div>
   );
 }

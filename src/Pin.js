@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Pin.css';
 
-export default function Pin() {
+export default function Pin({ onClick }) {
   return (
-    <div className="Pin">
+    <div className="Pin" onClick={onClick}>
       <span role="img" aria-label="livre">
         📕
       </span>

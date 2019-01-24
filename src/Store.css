@@ -1,5 +1,16 @@
 .Store {
+  align-items: flex-end;
   background: white;
+  display: flex;
+  left: 10px;
   margin: 5px;
   padding: 5px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.Store .logo img {
+  margin-right: 10px;
+  max-height: 75px;
+  max-width: 75px;
 }
