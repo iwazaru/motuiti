@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import Map from './Map';
 import { Store } from './Store';
 
 class App extends Component {
@@ -96,7 +98,11 @@ class App extends Component {
       return <Store key={id} {...props} />;
     });
 
-    return <div className="App">{storesComp}</div>;
+    return (
+      <div className="App">
+        <Map />
+      </div>
+    );
   }
 }
 
