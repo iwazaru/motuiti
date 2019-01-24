@@ -2,7 +2,14 @@ import React from 'react';
 
 import './Store.css';
 
-export function Store({ logo, name, address, postalCode, city, phone }) {
+export default function Store({
+  logo,
+  name,
+  address,
+  postalCode,
+  city,
+  phone,
+}) {
   return (
     <div className="Store">
       {logo && <img src={logo} alt={name} />}

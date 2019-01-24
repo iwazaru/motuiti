@@ -8,11 +8,9 @@ module.exports = async (req, res) => {
 
   const date = Date.now();
   const cacheFile = `/tmp/${ean}.json`;
-  let fromCache = false;
   let result;
 
   if (fs.existsSync(cacheFile)) {
-    fromCache = true;
     result = require(cacheFile);
     process.stdout.write(`Using cached response for EAN ${ean}\n`);
   }
@@ -27,9 +25,9 @@ module.exports = async (req, res) => {
     const json = await res.json();
 
     // Filter shop list to get only those with available stock
-    const shops = json.shop.filter(shop => shop.stockAvailablility);
+    const stores = json.shop.filter(shop => shop.stockAvailablility);
 
-    result = { ean, date, shops };
+    result = { ean, date, stores };
 
     fs.writeFile(cacheFile, JSON.stringify(result), error => {
       if (error) throw error;
