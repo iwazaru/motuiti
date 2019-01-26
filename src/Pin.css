@@ -1,5 +1,5 @@
 .Pin {
-  background-color: #57a0d3;
+  background-color: black;
   border-radius: 25px;
   color: white;
   cursor: pointer;
@@ -20,9 +20,20 @@
 
 .Pin::after {
   border: 10px solid transparent;
-  border-top: 17px solid #57a0d3;
+  border-top: 17px solid black;
   content: '';
   bottom: -21px;
   left: 2px;
   position: absolute;
+}
+
+.Pin .dot {
+  border-radius: 5px;
+  background: white;
+  height: 10px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 10px;
 }
