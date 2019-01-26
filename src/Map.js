@@ -1,22 +1,24 @@
-import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import React from "react";
+import GoogleMapReact from "google-map-react";
 
-import Pin from './Pin';
-import Store from './Store';
-import Header from './Header';
+import Pin from "./Pin";
+import Store from "./Store";
+import Header from "./Header";
+import UserPin from "./UserPin";
 
 export default class Map extends React.Component {
   static defaultProps = {
     center: {
       lat: 48.86543604815719,
-      lng: 2.3405013838030584,
+      lng: 2.3405013838030584
     },
-    zoom: 13,
+    zoom: 13
   };
 
   state = {
     stores: [],
     selectedStoreIndex: null,
+    userPosition: null
   };
 
   async getStores(ean) {
@@ -25,12 +27,21 @@ export default class Map extends React.Component {
     this.setState({ stores });
   }
 
+  onGeolocate(coords) {
+    const userPosition = {
+      lat: coords.latitude,
+      lng: coords.longitude
+    };
+    console.log(userPosition);
+    this.setState({ userPosition });
+  }
+
   onStoreSelect(selectedStoreIndex) {
     this.setState({ selectedStoreIndex });
   }
 
   render() {
-    const { stores, selectedStoreIndex } = this.state;
+    const { stores, selectedStoreIndex, userPosition } = this.state;
     let markers = null;
 
     if (stores) {
@@ -55,15 +66,23 @@ export default class Map extends React.Component {
 
     return (
       <React.Fragment>
-        <Header onSearch={ean => this.getStores(ean)} />
-        <div style={{ height: '100vh', width: '100%' }}>
+        <Header
+          onSearch={ean => this.getStores(ean)}
+          onGeolocate={coords => this.onGeolocate(coords)}
+        />
+        <div style={{ height: "100vh", width: "100%" }}>
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0' }}
+            bootstrapURLKeys={{
+              key: "AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0"
+            }}
             options={() => ({ fullscreenControl: false })}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
           >
             {markers}
+            {userPosition && (
+              <UserPin lat={userPosition.lat} lng={userPosition.lng} />
+            )}
           </GoogleMapReact>
           {selectedStore}
         </div>
