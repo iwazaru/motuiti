@@ -1,0 +1,16 @@
+.Header {
+  background: black;
+  color: white;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.Header .search-field {
+  width: 200px;
+}
+  
+  

@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react';
 
 import Pin from './Pin';
 import Store from './Store';
+import Header from './Header';
 
 export default class Map extends React.Component {
   static defaultProps = {
@@ -22,10 +23,6 @@ export default class Map extends React.Component {
     const response = await fetch(`/api/stores?ean=${ean}`);
     const { stores } = await response.json();
     this.setState({ stores });
-  }
-
-  async componentDidMount() {
-    await this.getStores('9791091146357');
   }
 
   onStoreSelect(selectedStoreIndex) {
@@ -57,18 +54,20 @@ export default class Map extends React.Component {
     }
 
     return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0' }}
-          options={() => ({ fullscreenControl: false })}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          {markers}
-        </GoogleMapReact>
-        {selectedStore}
-      </div>
+      <React.Fragment>
+        <Header onSearch={ean => this.getStores(ean)} />
+        <div style={{ height: '100vh', width: '100%' }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0' }}
+            options={() => ({ fullscreenControl: false })}
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}
+          >
+            {markers}
+          </GoogleMapReact>
+          {selectedStore}
+        </div>
+      </React.Fragment>
     );
   }
 }
