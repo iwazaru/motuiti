@@ -15,7 +15,7 @@ export default class Map extends React.Component {
 
   state = {
     stores: [],
-    selectedStore: null,
+    selectedStoreIndex: null,
   };
 
   async getStores(ean) {
@@ -28,30 +28,32 @@ export default class Map extends React.Component {
     await this.getStores('9791091146357');
   }
 
-  onStoreSelect(selectedStore) {
-    this.setState({ selectedStore });
+  onStoreSelect(selectedStoreIndex) {
+    this.setState({ selectedStoreIndex });
   }
 
   render() {
-    const { stores, selectedStore } = this.state;
+    const { stores, selectedStoreIndex } = this.state;
     let markers = null;
 
     if (stores) {
-      markers = stores.map(({ id, longitude, latitude, ...store }) => {
+      markers = stores.map(({ id, longitude, latitude, ...store }, index) => {
         return (
           <Pin
             key={id}
             lat={latitude}
             lng={longitude}
-            onClick={() => this.onStoreSelect(store)}
+            selected={index === selectedStoreIndex}
+            onClick={() => this.onStoreSelect(index)}
           />
         );
       });
     }
 
-    let selectedStoreComp = null;
-    if (selectedStore) {
-      selectedStoreComp = <Store {...selectedStore} />;
+    let selectedStore = null;
+    if (selectedStoreIndex) {
+      let store = stores[selectedStoreIndex];
+      selectedStore = <Store {...store} />;
     }
 
     return (
@@ -65,7 +67,7 @@ export default class Map extends React.Component {
         >
           {markers}
         </GoogleMapReact>
-        {selectedStoreComp}
+        {selectedStore}
       </div>
     );
   }
