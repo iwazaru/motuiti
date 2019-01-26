@@ -1,5 +1,6 @@
 .Header {
   background: black;
+  box-sizing: border-box;
   color: white;
   padding: 10px;
   position: absolute;
@@ -10,7 +11,21 @@
 }
 
 .Header .search-field {
-  width: 200px;
+  appearance: none;
+  background: white;
+  border: none;
+  margin: 0 5px;
+  padding: 5px;
+  max-width: 200px;
+  width: 33%;
+}
+
+.Header button {
+  appearance: none;
+  background: white;
+  border: none;
+  margin: 0 5px;
+  padding: 5px 10px;
 }
   
   

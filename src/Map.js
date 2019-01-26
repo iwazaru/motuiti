@@ -32,7 +32,6 @@ export default class Map extends React.Component {
       lat: coords.latitude,
       lng: coords.longitude
     };
-    console.log(userPosition);
     this.setState({ userPosition });
   }
 
