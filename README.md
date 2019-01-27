@@ -1,3 +1,18 @@
+# Motuiti
+
+Motuiti is an app that displays, for a given ISBN, bookshops that have the
+corresponding book available in stock on a map with geolocation.
+
+Book availability informations are updated once a day from french independant 
+bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
+
+# TODO
+- Ombres blanche longitude bug
+- Save API cache for only a day
+- Center map around closest bookstore
+- Clusters
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
