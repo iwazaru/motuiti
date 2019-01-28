@@ -1,38 +1,44 @@
-import React from "react";
-import GoogleMapReact from "google-map-react";
+import React from 'react';
+import GoogleMapReact from 'google-map-react';
 
-import Pin from "./Pin";
-import Store from "./Store";
-import Header from "./Header";
-import UserPin from "./UserPin";
+import Pin from './Pin';
+import Store from './Store';
+import Header from './Header';
+import UserPin from './UserPin';
 
 export default class Map extends React.Component {
   static defaultProps = {
     center: {
       lat: 48.86543604815719,
-      lng: 2.3405013838030584
+      lng: 2.3405013838030584,
     },
-    zoom: 13
+    zoom: 13,
   };
 
   state = {
     stores: [],
     selectedStoreIndex: null,
-    userPosition: null
+    userPosition: null,
+    searching: false,
+    locating: false,
   };
 
   async getStores(ean) {
+    this.setState({ searching: true });
     const response = await fetch(`/api/stores?ean=${ean}`);
     const { stores } = await response.json();
-    this.setState({ stores });
+    this.setState({ stores, searching: false });
   }
 
   onGeolocate(coords) {
-    const userPosition = {
-      lat: coords.latitude,
-      lng: coords.longitude
-    };
-    this.setState({ userPosition });
+    this.setState({ locating: true });
+    navigator.geolocation.getCurrentPosition(position => {
+      const userPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      this.setState({ userPosition, locating: false });
+    });
   }
 
   onStoreSelect(selectedStoreIndex) {
@@ -40,7 +46,13 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const { stores, selectedStoreIndex, userPosition } = this.state;
+    const {
+      stores,
+      selectedStoreIndex,
+      userPosition,
+      searching,
+      locating,
+    } = this.state;
     let markers = null;
 
     if (stores) {
@@ -68,11 +80,13 @@ export default class Map extends React.Component {
         <Header
           onSearch={ean => this.getStores(ean)}
           onGeolocate={coords => this.onGeolocate(coords)}
+          searching={searching}
+          locating={locating}
         />
-        <div style={{ height: "100vh", width: "100%" }}>
+        <div style={{ height: '100vh', width: '100%' }}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: "AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0"
+              key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0',
             }}
             options={() => ({ fullscreenControl: false })}
             defaultCenter={this.props.center}

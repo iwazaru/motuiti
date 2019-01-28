@@ -1,18 +1,13 @@
 import React from 'react';
 
 import './Header.css';
+import { Button } from './Button';
 
-export default function Header({ onSearch, onGeolocate }) {
+export default function Header({ onSearch, onGeolocate, searching, locating }) {
   function onFormSubmit(event) {
     event.preventDefault();
     const query = event.target.querySelector('.search-field').value;
     onSearch(query);
-  }
-
-  function onGeolocateButtonClick() {
-    navigator.geolocation.getCurrentPosition(position => {
-      onGeolocate(position.coords);
-    });
   }
 
   return (
@@ -23,12 +18,18 @@ export default function Header({ onSearch, onGeolocate }) {
           type="search"
           placeholder="ISBN du livre"
         />
-        <button type="submit">
-          <span class="fas fa-search" aria-label="Rechercher" />
-        </button>
-        <button type="button" onClick={onGeolocateButtonClick}>
-          <span class="fas fa-location-arrow" aria-label="Me localiser" />
-        </button>
+        <Button
+          type="submit"
+          icon="search"
+          label="Rechercher"
+          loading={searching}
+        />
+        <Button
+          icon="location-arrow"
+          label="Me localiser"
+          onClick={onGeolocate}
+          loading={locating}
+        />
       </form>
     </div>
   );
