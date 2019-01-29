@@ -1,8 +1,10 @@
+import filterStores from '../../src/utils/filterStores';
+
 const { parse } = require('url');
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { query } = parse(req.url, true);
   const { ean } = query;
 
@@ -23,9 +25,7 @@ module.exports = async (req, res) => {
       `https://www.placedeslibraires.fr/getshoplist.php?ISBN=${ean}`
     );
     const json = await res.json();
-
-    // Filter shop list to get only those with available stock
-    const stores = json.shop.filter(shop => shop.stockAvailablility);
+    const stores = filterStores(json.shop);
 
     result = { ean, date, stores };
 
