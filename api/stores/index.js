@@ -13,7 +13,8 @@ export default async (req, res) => {
   let result;
 
   if (fs.existsSync(cacheFile)) {
-    result = require(cacheFile);
+    const json = fs.readFileSync(cacheFile);
+    result = JSON.parse(json);
     process.stdout.write(`Using cached response for EAN ${ean}\n`);
   }
 
