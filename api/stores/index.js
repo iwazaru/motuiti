@@ -1,4 +1,5 @@
 import filterStores from '../../src/utils/filterStores';
+import parseStore from '../../src/utils/parseStore';
 
 const { parse } = require('url');
 const fetch = require('node-fetch');
@@ -26,7 +27,8 @@ export default async (req, res) => {
       `https://www.placedeslibraires.fr/getshoplist.php?ISBN=${ean}`
     );
     const json = await res.json();
-    const stores = filterStores(json.shop);
+    const storesJson = filterStores(json.shop);
+    const stores = storesJson.map(parseStore);
 
     result = { ean, date, stores };
 

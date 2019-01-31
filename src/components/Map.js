@@ -28,7 +28,7 @@ export default class Map extends React.Component {
 
     const bounds = new window.google.maps.LatLngBounds();
     stores.forEach(({ latitude, longitude }) => {
-      bounds.extend({ lat: parseFloat(latitude), lng: parseFloat(longitude) });
+      bounds.extend({ lat: latitude, lng: longitude });
     });
 
     const ne = {
