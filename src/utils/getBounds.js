@@ -1,8 +1,8 @@
 import { fitBounds } from 'google-map-react/utils';
 
-export default function getBounds(stores) {
+export default function getBounds(locations) {
   const bounds = new window.google.maps.LatLngBounds();
-  stores.forEach(({ latitude, longitude }) => {
+  locations.forEach(({ latitude, longitude }) => {
     bounds.extend({ lat: latitude, lng: longitude });
   });
 

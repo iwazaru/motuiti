@@ -7,6 +7,7 @@ import Header from './Header';
 import UserPin from './UserPin';
 
 import getBounds from '../utils/getBounds';
+import { getClosestLocation } from '../utils/getClosestLocation';
 
 export default class Map extends React.Component {
   state = {
@@ -40,7 +41,17 @@ export default class Map extends React.Component {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
-      this.setState({ userPosition, locating: false });
+
+      const closestStore = getClosestLocation(userPosition, this.state.stores);
+      const { center, zoom } = getBounds([
+        {
+          latitude: userPosition.lat,
+          longitude: userPosition.lng,
+        },
+        closestStore,
+      ]);
+
+      this.setState({ userPosition, locating: false, center, zoom: zoom - 1 });
     });
   }
 
