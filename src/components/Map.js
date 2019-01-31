@@ -1,11 +1,12 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import { fitBounds } from 'google-map-react/utils';
 
 import Pin from './Pin';
 import Store from './Store';
 import Header from './Header';
 import UserPin from './UserPin';
+
+import getBounds from '../utils/getBounds';
 
 export default class Map extends React.Component {
   state = {
@@ -26,24 +27,8 @@ export default class Map extends React.Component {
     const response = await fetch(`/api/stores?ean=${ean}`);
     const { stores } = await response.json();
 
-    const bounds = new window.google.maps.LatLngBounds();
-    stores.forEach(({ latitude, longitude }) => {
-      bounds.extend({ lat: latitude, lng: longitude });
-    });
-
-    const ne = {
-      lat: bounds.getNorthEast().lat(),
-      lng: bounds.getNorthEast().lng(),
-    };
-    const sw = {
-      lat: bounds.getSouthWest().lat(),
-      lng: bounds.getSouthWest().lng(),
-    };
-
-    const { center, zoom } = fitBounds(
-      { ne, sw },
-      { width: window.innerWidth, height: window.innerHeight }
-    );
+    // Reposition map to show all stores
+    const { center, zoom } = getBounds(stores);
 
     this.setState({ stores, searching: false, center, zoom });
   }
