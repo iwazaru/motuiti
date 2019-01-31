@@ -15,10 +15,10 @@ export default class Map extends React.Component {
     searching: false,
     locating: false,
     center: {
-      lat: 48.86543604815719,
-      lng: 2.3405013838030584,
+      lat: 46.98140721416763,
+      lng: 1.7822031499999866,
     },
-    zoom: 13,
+    zoom: 6,
   };
 
   async getStores(ean) {
