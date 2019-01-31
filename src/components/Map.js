@@ -9,6 +9,12 @@ import UserPin from './UserPin';
 import getBounds from '../utils/getBounds';
 import { getClosestLocation } from '../utils/getClosestLocation';
 
+const DEFAULT_CENTER = {
+  lat: 46.98140721416764,
+  lng: 1.7822031499999865,
+};
+const DEFAULT_ZOOM = 6;
+
 export default class Map extends React.Component {
   state = {
     stores: [],
@@ -16,11 +22,8 @@ export default class Map extends React.Component {
     userPosition: null,
     searching: false,
     locating: false,
-    center: {
-      lat: 46.98140721416763,
-      lng: 1.7822031499999866,
-    },
-    zoom: 6,
+    center: DEFAULT_CENTER,
+    zoom: DEFAULT_ZOOM,
   };
 
   async getStores(ean) {
@@ -28,16 +31,8 @@ export default class Map extends React.Component {
     const response = await fetch(`/api/stores?ean=${ean}`);
     const { stores } = await response.json();
 
-    // Reposition map to show all stores
-    const { center, zoom } = getBounds(stores);
-
-    this.setState({
-      stores,
-      searching: false,
-      selectedStoreIndex: null,
-      center,
-      zoom,
-    });
+    this.setState({ stores, searching: false, selectedStoreIndex: null });
+    this.updateMapPosition();
   }
 
   onGeolocate() {
@@ -48,7 +43,21 @@ export default class Map extends React.Component {
         lng: position.coords.longitude,
       };
 
-      const closestStore = getClosestLocation(userPosition, this.state.stores);
+      this.setState({ userPosition, locating: false });
+      this.updateMapPosition();
+    });
+  }
+
+  /**
+   * Update map position:
+   * - to display closest store and user position if both are known
+   * - to display all stores if user position is unknown
+   */
+  updateMapPosition() {
+    const { userPosition, stores } = this.state;
+
+    if (userPosition && stores.length > 0) {
+      const closestStore = getClosestLocation(userPosition, stores);
       const { center, zoom } = getBounds([
         {
           latitude: userPosition.lat,
@@ -57,8 +66,12 @@ export default class Map extends React.Component {
         closestStore,
       ]);
 
-      this.setState({ userPosition, locating: false, center, zoom: zoom - 1 });
-    });
+      this.setState({ center, zoom: zoom - 1 });
+    } else if (stores.length > 0) {
+      const { center, zoom } = getBounds(stores);
+
+      this.setState({ center, zoom });
+    }
   }
 
   onStoreSelect(selectedStoreIndex) {
@@ -96,6 +109,7 @@ export default class Map extends React.Component {
       let store = stores[selectedStoreIndex];
       selectedStore = <Store {...store} />;
     }
+    console.log({ center, zoom });
 
     return (
       <React.Fragment>
