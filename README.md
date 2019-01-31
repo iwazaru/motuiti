@@ -8,7 +8,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 # TODO
 
-- Ombres blanches longitude bug
 - Save API cache for only a day
 - Center map around closest bookstore
 - Clusters
