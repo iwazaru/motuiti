@@ -31,10 +31,16 @@ export default class Map extends React.Component {
     // Reposition map to show all stores
     const { center, zoom } = getBounds(stores);
 
-    this.setState({ stores, searching: false, center, zoom });
+    this.setState({
+      stores,
+      searching: false,
+      selectedStoreIndex: null,
+      center,
+      zoom,
+    });
   }
 
-  onGeolocate(coords) {
+  onGeolocate() {
     this.setState({ locating: true });
     navigator.geolocation.getCurrentPosition(position => {
       const userPosition = {
