@@ -1,16 +1,16 @@
-import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import React from "react";
+import GoogleMapReact from "google-map-react";
 
-import Pin from './Pin';
-import Store from './Store';
-import Header from './Header';
-import UserPin from './UserPin';
+import Pin from "./Pin";
+import Store from "./Store";
+import Header from "./Header";
+import UserPin from "./UserPin";
 
-import Geo from '../utils/Geo';
+import Geo from "../utils/Geo";
 
 const DEFAULT_CENTER = {
   lat: 46.98140721416764,
-  lng: 1.7822031499999865,
+  lng: 1.7822031499999865
 };
 const DEFAULT_ZOOM = 6;
 
@@ -21,8 +21,9 @@ export default class Map extends React.Component {
     userPosition: null,
     searching: false,
     locating: false,
+    located: false,
     center: DEFAULT_CENTER,
-    zoom: DEFAULT_ZOOM,
+    zoom: DEFAULT_ZOOM
   };
 
   async getStores(ean) {
@@ -35,14 +36,19 @@ export default class Map extends React.Component {
   }
 
   onGeolocate() {
+    if (this.state.located) {
+      this.setState({ userPosition: null, located: false });
+      return;
+    }
+
     this.setState({ locating: true });
     navigator.geolocation.getCurrentPosition(position => {
       const userPosition = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lng: position.coords.longitude
       };
 
-      this.setState({ userPosition, locating: false });
+      this.setState({ userPosition, locating: false, located: true });
       this.updateMapPosition();
     });
   }
@@ -60,9 +66,9 @@ export default class Map extends React.Component {
       const { center, zoom } = Geo.getBounds([
         {
           lat: userPosition.lat,
-          lng: userPosition.lng,
+          lng: userPosition.lng
         },
-        closestStore,
+        closestStore
       ]);
 
       this.setState({ center, zoom: zoom - 1 });
@@ -86,6 +92,7 @@ export default class Map extends React.Component {
       userPosition,
       searching,
       locating,
+      located
     } = this.state;
     let markers = null;
 
@@ -116,11 +123,12 @@ export default class Map extends React.Component {
           onGeolocate={coords => this.onGeolocate(coords)}
           searching={searching}
           locating={locating}
+          located={located}
         />
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: "100vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0',
+              key: "AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0"
             }}
             options={() => ({ fullscreenControl: false })}
             center={center}

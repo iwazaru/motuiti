@@ -1,12 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import './Header.css';
-import { Button } from './Button';
+import "./Header.css";
+import { Button } from "./Button";
 
-export default function Header({ onSearch, onGeolocate, searching, locating }) {
+export default function Header({
+  onSearch,
+  onGeolocate,
+  searching,
+  locating,
+  located
+}) {
   function onFormSubmit(event) {
     event.preventDefault();
-    const query = event.target.querySelector('.search-field').value;
+    const query = event.target.querySelector(".search-field").value;
     onSearch(query);
   }
 
@@ -29,6 +35,7 @@ export default function Header({ onSearch, onGeolocate, searching, locating }) {
           label="Me localiser"
           onClick={onGeolocate}
           loading={locating}
+          toggled={located}
         />
       </form>
     </div>
