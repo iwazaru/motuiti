@@ -6,8 +6,7 @@ import Store from './Store';
 import Header from './Header';
 import UserPin from './UserPin';
 
-import getBounds from '../utils/getBounds';
-import { getClosestLocation } from '../utils/getClosestLocation';
+import Geo from '../utils/Geo';
 
 const DEFAULT_CENTER = {
   lat: 46.98140721416764,
@@ -57,8 +56,8 @@ export default class Map extends React.Component {
     const { userPosition, stores } = this.state;
 
     if (userPosition && stores.length > 0) {
-      const closestStore = getClosestLocation(userPosition, stores);
-      const { center, zoom } = getBounds([
+      const closestStore = Geo.getClosestLocation(userPosition, stores);
+      const { center, zoom } = Geo.getBounds([
         {
           latitude: userPosition.lat,
           longitude: userPosition.lng,
@@ -68,7 +67,7 @@ export default class Map extends React.Component {
 
       this.setState({ center, zoom: zoom - 1 });
     } else if (stores.length > 0) {
-      const { center, zoom } = getBounds(stores);
+      const { center, zoom } = Geo.getBounds(stores);
 
       this.setState({ center, zoom });
     }
@@ -109,7 +108,6 @@ export default class Map extends React.Component {
       let store = stores[selectedStoreIndex];
       selectedStore = <Store {...store} />;
     }
-    console.log({ center, zoom });
 
     return (
       <React.Fragment>
