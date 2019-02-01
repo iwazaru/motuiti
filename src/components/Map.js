@@ -59,8 +59,8 @@ export default class Map extends React.Component {
       const closestStore = Geo.getClosestLocation(userPosition, stores);
       const { center, zoom } = Geo.getBounds([
         {
-          latitude: userPosition.lat,
-          longitude: userPosition.lng,
+          lat: userPosition.lat,
+          lng: userPosition.lng,
         },
         closestStore,
       ]);
@@ -90,12 +90,12 @@ export default class Map extends React.Component {
     let markers = null;
 
     if (stores) {
-      markers = stores.map(({ id, longitude, latitude, ...store }, index) => {
+      markers = stores.map(({ id, lng, lat, ...store }, index) => {
         return (
           <Pin
             key={id}
-            lat={latitude}
-            lng={longitude}
+            lat={lat}
+            lng={lng}
             selected={index === selectedStoreIndex}
             onClick={() => this.onStoreSelect(index)}
           />

@@ -3,8 +3,8 @@ import { fitBounds } from "google-map-react/utils";
 export default class Geo {
   static getBounds(locations) {
     const bounds = new window.google.maps.LatLngBounds();
-    locations.forEach(({ latitude, longitude }) => {
-      bounds.extend({ lat: latitude, lng: longitude });
+    locations.forEach(({ lat, lng }) => {
+      bounds.extend({ lat, lng });
     });
 
     const ne = {
@@ -24,13 +24,13 @@ export default class Geo {
     return { center, zoom };
   }
 
-  static calculateDistance(lat1, lon1, lat2, lon2, unit) {
-    if (lat1 === lat2 && lon1 === lon2) {
+  static calculateDistance(lat1, lng1, lat2, lng2, unit) {
+    if (lat1 === lat2 && lng1 === lng2) {
       return 0;
     } else {
       var radlat1 = (Math.PI * lat1) / 180;
       var radlat2 = (Math.PI * lat2) / 180;
-      var theta = lon1 - lon2;
+      var theta = lng1 - lng2;
       var radtheta = (Math.PI * theta) / 180;
       var dist =
         Math.sin(radlat1) * Math.sin(radlat2) +
@@ -56,8 +56,8 @@ export default class Geo {
       const distance = Geo.calculateDistance(
         position.lat,
         position.lng,
-        location.latitude,
-        location.longitude,
+        location.lat,
+        location.lng,
         "K"
       );
       return {

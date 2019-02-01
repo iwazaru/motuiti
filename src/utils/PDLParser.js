@@ -31,8 +31,8 @@ export default class PDLParser {
     postalCode,
     city,
     phone,
-    latitude: parseFloat(latitude),
-    longitude: parseFloat(longitude),
+    lat: parseFloat(latitude),
+    lng: parseFloat(longitude),
     logo,
   };
 }

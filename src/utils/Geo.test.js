@@ -24,8 +24,8 @@ describe("Geo", () => {
   describe("getBounds", () => {
     it("getBounds", () => {
       const locations = [
-        { latitude: 2, longitude: 2 },
-        { latitude: 3, longitude: 3 }
+        { lat: 2, lng: 2 },
+        { lat: 3, lng: 3 }
       ];
       const bounds = Geo.getBounds(locations);
       expect(bounds).toEqual({
@@ -45,15 +45,15 @@ describe("Geo", () => {
   describe("getClosestLocation", () => {
     it("get closest location", () => {
       const locations = [
-        { latitude: 2, longitude: 2 },
-        { latitude: 3, longitude: 3 }
+        { lat: 2, lng: 2 },
+        { lat: 3, lng: 3 }
       ];
       const position = { lat: 1, lng: 1 };
       const closest = Geo.getClosestLocation(position, locations);
       expect(closest).toEqual({
         distance: 157.2178677858709,
-        latitude: 2,
-        longitude: 2
+        lat: 2,
+        lng: 2
       });
     });
   });
