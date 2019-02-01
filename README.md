@@ -13,6 +13,8 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - Validate/Format ISBN before searching
 - Auto-search ISBN if ISBN is valid
 - Map pins z-index on hover
+- "Call" and "Directions" buttons
+- Router for "/book/{ean}/" urls
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
