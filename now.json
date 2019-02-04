@@ -3,7 +3,7 @@
   "version": 2,
   "alias": ["motuiti.iwzr.fr"],
   "builds": [
-    { "src": "api/stores/index.js", "use": "@now/node" },
+    { "src": "api/stores.js", "use": "@now/node" },
     { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
@@ -17,6 +17,11 @@
       "dest": "/service-worker.js"
     },
     { "src": "^/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
-    { "src": "^/", "dest": "/index.html" }
+    { "src": "^/", "dest": "/index.html" },
+    {
+      "src": "/api/stores/(?<ean>[^/]*)",
+      "dest": "/api/stores.js?ean=$ean",
+      "headers": { "Cache-Control": "s-maxage=3600, maxage=0" }
+    }
   ]
 }

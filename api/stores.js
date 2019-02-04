@@ -1,4 +1,4 @@
-import PDLParser from '../../src/utils/PDLParser';
+import PDLParser from '../src/utils/PDLParser';
 
 const { parse } = require('url');
 const fetch = require('node-fetch');

@@ -30,7 +30,7 @@ export default class Map extends React.Component {
 
   async getStores(ean) {
     this.setState({ searching: true });
-    const response = await fetch(`/api/stores?ean=${ean}`);
+    const response = await fetch(`/api/stores/${ean}`);
     const { stores } = await response.json();
 
     this.setState({ stores, searching: false, selectedStoreIndex: null });
