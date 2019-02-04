@@ -1,6 +1,11 @@
-import PDLParser from "./PDLParser";
+import PlaceDesLibraires from "./PlaceDesLibraires";
 
-describe("PDLParser", () => {
+describe("PlaceDesLibraires", () => {
+  describe("getStoresForEan", () => {
+    const stores = PlaceDesLibraires.getStoresForEan("978123456789");
+    expect(stores).toMatchInlineSnapshot(`Promise {}`);
+  });
+
   describe("filterStores", () => {
     it("filter stores to remove invalid ones", () => {
       const stores = [
@@ -23,7 +28,7 @@ describe("PDLParser", () => {
           longitude: "01 45 73 48 29"
         }
       ];
-      expect(PDLParser.filterStores(stores)).toMatchInlineSnapshot(`
+      expect(PlaceDesLibraires.filterStores(stores)).toMatchInlineSnapshot(`
 Array [
   Object {
     "latitude": "1",
@@ -52,14 +57,14 @@ Array [
         precommande: false,
         vacances: false
       };
-      expect(PDLParser.isStoreValid(store)).toBe(true);
+      expect(PlaceDesLibraires.isStoreValid(store)).toBe(true);
     });
 
     it("returns false for a store with invalid lng", () => {
       const store = {
         lng: "01 45 69 59 59"
       };
-      expect(PDLParser.isStoreValid(store)).toBe(false);
+      expect(PlaceDesLibraires.isStoreValid(store)).toBe(false);
     });
   });
 
@@ -79,7 +84,7 @@ Array [
         precommande: false,
         vacances: false
       };
-      expect(PDLParser.parseStore(store)).toMatchInlineSnapshot(`
+      expect(PlaceDesLibraires.parseStore(store)).toMatchInlineSnapshot(`
 Object {
   "address": "14 Place Carriat",
   "city": "Bourg en bresse",

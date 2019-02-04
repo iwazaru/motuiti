@@ -6,7 +6,7 @@ import Store from './Store';
 import Header from './Header';
 import UserPin from './UserPin';
 
-import Geo from '../utils/Geo';
+import Geo from '../lib/Geo';
 
 import './Map.css';
 

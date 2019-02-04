@@ -12,11 +12,13 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 - Validate/Format ISBN before searching
 - Router for "/book/{ean}/" urls
-- Auto-search ISBN if ISBN is valid
+- About page
+- Tooltips
 
 ## Nice to have
 
-- Save API cache for only a day
+- Cache API responses until midnight
+- Auto-search ISBN if ISBN is valid
 - Regroup marker into clusters
 - Map pins z-index on hover
 - "Call" and "Directions" buttons
