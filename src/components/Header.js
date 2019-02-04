@@ -1,23 +1,26 @@
-import React from "react";
+import React from 'react';
 
-import "./Header.css";
-import { Button } from "./Button";
+import './Header.css';
+import { Button } from './Button';
 
 export default function Header({
   onSearch,
   onGeolocate,
   searching,
   locating,
-  located
+  located,
 }) {
   function onFormSubmit(event) {
     event.preventDefault();
-    const query = event.target.querySelector(".search-field").value;
+    const query = event.target.querySelector('.search-field').value;
     onSearch(query);
   }
 
   return (
     <div className="Header">
+      <div className="title">
+        <a href="https://motuiti.iwzr.fr">motuiti</a>
+      </div>
       <form onSubmit={onFormSubmit}>
         <input
           className="search-field"

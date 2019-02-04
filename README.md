@@ -8,13 +8,18 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 # TODO
 
-- Save API cache for only a day
-- Clusters
+## Must have :
+
 - Validate/Format ISBN before searching
+- Router for "/book/{ean}/" urls
 - Auto-search ISBN if ISBN is valid
+
+## Nice to have
+
+- Save API cache for only a day
+- Regroup marker into clusters
 - Map pins z-index on hover
 - "Call" and "Directions" buttons
-- Router for "/book/{ean}/" urls
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
