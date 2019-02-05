@@ -10,7 +10,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have :
 
-- Validate/Format ISBN before searching
 - Router for "/book/{ean}/" urls
 - About page
 - Tooltips
@@ -19,10 +18,10 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 ## Nice to have
 
 - Cache API responses until midnight
-- Auto-search ISBN if ISBN is valid
 - Regroup marker into clusters
 - Map pins z-index on hover
 - "Call" and "Directions" buttons
+- React components test
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
