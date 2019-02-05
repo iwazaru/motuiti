@@ -10,10 +10,12 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have :
 
+- Remove stores when initiating a new search
 - Validate/Format ISBN before searching
 - Router for "/book/{ean}/" urls
 - About page
 - Tooltips
+- Handling errors in front & back ends
 
 ## Nice to have
 
