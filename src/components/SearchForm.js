@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from './Button';
-import IsbnUtils from 'isbn-utils';
+
+import processIsbn from '../lib/processIsbn';
 
 export default class SearchForm extends React.Component {
   state = {
     query: '',
-    ean: null,
   };
 
   onFormSubmit(event) {
@@ -15,24 +15,15 @@ export default class SearchForm extends React.Component {
       return;
     }
 
-    if (this.state.ean === null) {
-      window.alert('Cet ISBN semble invalide.');
-      return;
+    try {
+      const ean = processIsbn(this.state.query);
+      this.props.onSearch(ean);
+    } catch (error) {
+      window.alert(error.message);
     }
-
-    this.props.onSearch(this.state.ean);
   }
 
   onInputChange(query) {
-    const isbn = IsbnUtils.parse(query);
-
-    if (isbn) {
-      const ean = isbn.asIsbn13();
-      this.setState({ ean });
-    } else {
-      this.setState({ ean: null });
-    }
-
     this.setState({ query });
   }
 
