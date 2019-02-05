@@ -5,6 +5,7 @@
   "proxy": "https://motuiti.iwzr.fr",
   "dependencies": {
     "google-map-react": "^1.1.2",
+    "isbn-utils": "^1.1.0",
     "node-fetch": "^2.3.0",
     "prettier": "^1.16.1",
     "react": "^16.7.0",
