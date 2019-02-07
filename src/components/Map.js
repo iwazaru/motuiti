@@ -10,6 +10,7 @@ import Header from './Header';
 import UserPin from './UserPin';
 
 import Geo from '../lib/Geo';
+import processIsbn from '../lib/processIsbn';
 
 import './Map.css';
 
@@ -33,13 +34,19 @@ export default class Map extends React.Component {
     zoom: DEFAULT_ZOOM,
   };
 
-  async getStores(ean) {
-    this.setState({ stores: [], searching: true });
-    const response = await fetch(`/api/stores/${ean}`);
-    const { stores } = await response.json();
+  async getStores(query) {
+    try {
+      const ean = processIsbn(query);
 
-    this.setState({ stores, searching: false, selectedStoreIndex: null });
-    this.updateMapPosition();
+      this.setState({ stores: [], searching: true });
+      const response = await fetch(`/api/stores/${ean}`);
+      const { stores } = await response.json();
+
+      this.setState({ stores, searching: false, selectedStoreIndex: null });
+      this.updateMapPosition();
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
 
   onGeolocate() {
