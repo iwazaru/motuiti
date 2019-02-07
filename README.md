@@ -15,10 +15,10 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - Tooltips
 - Handle errors in front & back ends
 - Handle fetching errors
+- Google Analytics
 
 ## Nice to have
 
-- Cache API responses until midnight in CDN
 - Persist API responses until midnight in database
 - Regroup marker into clusters
 - Map pins z-index on hover
