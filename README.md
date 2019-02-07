@@ -10,7 +10,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
-- Map positionning bug when searching for 9782917157909
 - Router for "/book/{ean}/" urls
 - About page
 - Tooltips
