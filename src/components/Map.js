@@ -1,6 +1,9 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
+import BookSelector from './BookSelector';
 import Pin from './Pin';
 import Store from './Store';
 import Header from './Header';
@@ -15,6 +18,8 @@ const DEFAULT_CENTER = {
   lng: 1.7822031499999865,
 };
 const DEFAULT_ZOOM = 6;
+
+const history = createBrowserHistory();
 
 export default class Map extends React.Component {
   state = {
@@ -126,32 +131,40 @@ export default class Map extends React.Component {
       selectedStore = <Store {...store} />;
     }
 
+    const bookSelector = props => (
+      <BookSelector {...props} onLoad={ean => this.getStores(ean)} />
+    );
+
     return (
-      <React.Fragment>
-        <Header
-          onSearch={ean => this.getStores(ean)}
-          onGeolocate={coords => this.onGeolocate(coords)}
-          searching={searching}
-          locating={locating}
-          located={located}
-        />
-        <div className="Map" style={{}}>
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: process.env.REACT_APP_GMAPS_API_KEY,
-            }}
-            options={() => ({ fullscreenControl: false })}
-            center={center}
-            zoom={zoom}
-          >
-            {markers}
-            {userPosition && (
-              <UserPin lat={userPosition.lat} lng={userPosition.lng} />
-            )}
-          </GoogleMapReact>
-          {selectedStore}
-        </div>
-      </React.Fragment>
+      <Router history={history}>
+        <React.Fragment>
+          <Header
+            onSearch={ean => this.getStores(ean)}
+            onGeolocate={coords => this.onGeolocate(coords)}
+            searching={searching}
+            locating={locating}
+            located={located}
+            history={history}
+          />
+          <div className="Map" style={{}}>
+            <GoogleMapReact
+              bootstrapURLKeys={{
+                key: process.env.REACT_APP_GMAPS_API_KEY,
+              }}
+              options={() => ({ fullscreenControl: false })}
+              center={center}
+              zoom={zoom}
+            >
+              {markers}
+              {userPosition && (
+                <UserPin lat={userPosition.lat} lng={userPosition.lng} />
+              )}
+            </GoogleMapReact>
+            {selectedStore}
+          </div>
+          <Route path="/livre/:ean/" render={bookSelector} />
+        </React.Fragment>
+      </Router>
     );
   }
 }

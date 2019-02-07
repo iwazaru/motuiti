@@ -10,7 +10,7 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
-- Router for "/book/{ean}/" urls
+- Validate ean from url before sending to server
 - About page
 - Tooltips
 - Handle errors in front & back ends
@@ -24,6 +24,8 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - Map pins z-index on hover
 - "Call" and "Directions" buttons
 - React components test
+- PropTypes
+- Show numbers of bookstores results after search
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

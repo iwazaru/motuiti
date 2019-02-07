@@ -18,6 +18,7 @@ export default class SearchForm extends React.Component {
     try {
       const ean = processIsbn(this.state.query);
       this.props.onSearch(ean);
+      this.props.history.push(`/livre/${ean}`);
     } catch (error) {
       window.alert(error.message);
     }
