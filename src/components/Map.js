@@ -138,7 +138,7 @@ export default class Map extends React.Component {
         <div className="Map" style={{}}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0',
+              key: process.env.REACT_APP_GMAPS_API_KEY,
             }}
             options={() => ({ fullscreenControl: false })}
             center={center}

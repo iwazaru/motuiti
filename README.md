@@ -15,7 +15,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - Tooltips
 - Handle errors in front & back ends
 - Handle fetching errors
-- Get Google Maps API key as a env variable
 
 ## Nice to have
 
@@ -27,6 +26,13 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - React components test
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Environnement variables
+
+Some environnement variables are mandatory to run this project.
+You can [define them in an .env file](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables#adding-development-environment-variables-in-env).
+
+- `REACT_APP_GMAPS_API_KEY`: [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ## Available Scripts
 
