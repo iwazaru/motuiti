@@ -13,9 +13,11 @@ export default async (req, res) => {
   try {
     const validEan = processIsbn(ean);
     const stores = await PlaceDesLibraires.getStoresForEan(validEan);
+    process.stdout.write(`Sending response for ISBN ${validEan}`);
     res.end(JSON.stringify({ ean, date, stores }));
   } catch (error) {
-    res.status(400);
+    process.stdout.write(`Sending error for invalid ISBN ${ean}`);
+    res.statusCode = 400;
     res.end(JSON.stringify({ error: error.message }));
   }
 };

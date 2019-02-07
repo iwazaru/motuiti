@@ -8,16 +8,20 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 # TODO
 
-## Must have :
+## Must have
 
+- Map positionning bug when searching for 9782917157909
 - Router for "/book/{ean}/" urls
 - About page
 - Tooltips
-- Handling errors in front & back ends
+- Handle errors in front & back ends
+- Handle fetching errors
+- Get Google Maps API key as a env variable
 
 ## Nice to have
 
-- Cache API responses until midnight
+- Cache API responses until midnight in CDN
+- Persist API responses until midnight in database
 - Regroup marker into clusters
 - Map pins z-index on hover
 - "Call" and "Directions" buttons

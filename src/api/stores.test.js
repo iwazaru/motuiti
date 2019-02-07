@@ -27,7 +27,7 @@ describe('Stores API', () => {
       url: 'http://www.example.org/api/stores?ean=invalid',
     };
     await controller(request, response);
-    expect(response.status).toBeCalledWith(400);
+    expect(response.statusCode).toBe(400);
     expect(response.end).toBeCalledWith(
       '{"error":"Cet ISBN semble invalide."}'
     );
