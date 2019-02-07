@@ -121,7 +121,7 @@ export default class Map extends React.Component {
     }
 
     let selectedStore = null;
-    if (selectedStoreIndex) {
+    if (selectedStoreIndex !== null) {
       let store = stores[selectedStoreIndex];
       selectedStore = <Store {...store} />;
     }
