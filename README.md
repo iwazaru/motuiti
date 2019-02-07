@@ -8,24 +8,31 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 # TODO
 
-## Must have :
+## Must have
 
-- Remove stores when initiating a new search
-- Validate/Format ISBN before searching
 - Router for "/book/{ean}/" urls
 - About page
 - Tooltips
-- Handling errors in front & back ends
+- Handle errors in front & back ends
+- Handle fetching errors
 
 ## Nice to have
 
-- Cache API responses until midnight
-- Auto-search ISBN if ISBN is valid
+- Cache API responses until midnight in CDN
+- Persist API responses until midnight in database
 - Regroup marker into clusters
 - Map pins z-index on hover
 - "Call" and "Directions" buttons
+- React components test
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Environnement variables
+
+Some environnement variables are mandatory to run this project.
+You can [define them in an .env file](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables#adding-development-environment-variables-in-env).
+
+- `REACT_APP_GMAPS_API_KEY`: [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ## Available Scripts
 

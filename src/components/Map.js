@@ -29,7 +29,7 @@ export default class Map extends React.Component {
   };
 
   async getStores(ean) {
-    this.setState({ searching: true });
+    this.setState({ stores: [], searching: true });
     const response = await fetch(`/api/stores/${ean}`);
     const { stores } = await response.json();
 
@@ -63,6 +63,8 @@ export default class Map extends React.Component {
   updateMapPosition() {
     const { userPosition, stores } = this.state;
 
+    // If there is stores on the map and user position is known,
+    // move map to show user and closest store
     if (userPosition && stores.length > 0) {
       const closestStore = Geo.getClosestLocation(userPosition, stores);
       const { center, zoom } = Geo.getBounds([
@@ -74,10 +76,16 @@ export default class Map extends React.Component {
       ]);
 
       this.setState({ center, zoom: zoom - 1 });
-    } else if (stores.length > 0) {
+      return;
+    }
+
+    // If there is stores on the map but user position is unkown,
+    // move map to show all stores
+    if (stores.length > 0) {
       const { center, zoom } = Geo.getBounds(stores);
 
       this.setState({ center, zoom });
+      return;
     }
   }
 
@@ -113,7 +121,7 @@ export default class Map extends React.Component {
     }
 
     let selectedStore = null;
-    if (selectedStoreIndex) {
+    if (selectedStoreIndex !== null) {
       let store = stores[selectedStoreIndex];
       selectedStore = <Store {...store} />;
     }
@@ -130,7 +138,7 @@ export default class Map extends React.Component {
         <div className="Map" style={{}}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyDiB3cT5saF3t-4DJayd6zUAmlV5GjiQC0',
+              key: process.env.REACT_APP_GMAPS_API_KEY,
             }}
             options={() => ({ fullscreenControl: false })}
             center={center}
