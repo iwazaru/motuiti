@@ -18,6 +18,7 @@
     },
     { "src": "^/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
     { "src": "^/", "dest": "/index.html" },
+    { "src": "/livre/(.*)", "dest": "/index.html" },
     {
       "src": "/api/stores/(?<ean>[^/]*)",
       "dest": "/src/api/stores.js?ean=$ean",
