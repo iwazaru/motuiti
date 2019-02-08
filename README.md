@@ -10,7 +10,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
-- Validate ean from url before sending to server
 - About page
 - Tooltips
 - Handle errors in front & back ends
