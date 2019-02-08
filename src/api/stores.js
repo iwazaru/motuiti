@@ -2,11 +2,8 @@ import PlaceDesLibraires from '../lib/PlaceDesLibraires';
 import processIsbn from '../lib/processIsbn';
 import getSecondsToTomorrow from '../lib/getSecondsToTomorrow';
 
-const { parse } = require('url');
-
-export default async (event, context, callback) => {
-  const { query } = parse(event.path, true);
-  const { ean } = query;
+exports.handler = async (event, context, callback) => {
+  const { ean } = event.queryStringParameters;
   const date = Date.now();
 
   const headers = {
