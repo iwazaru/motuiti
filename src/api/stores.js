@@ -1,5 +1,6 @@
 import PlaceDesLibraires from '../lib/PlaceDesLibraires';
 import processIsbn from '../lib/processIsbn';
+import getSecondsToTomorrow from '../lib/getSecondsToTomorrow';
 
 const { parse } = require('url');
 
@@ -9,6 +10,7 @@ export default async (req, res) => {
   const date = Date.now();
 
   res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', `public, s-maxage=${getSecondsToTomorrow()}`);
 
   try {
     const validEan = processIsbn(ean);
