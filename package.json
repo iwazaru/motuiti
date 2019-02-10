@@ -23,6 +23,9 @@
     "now-build": "react-scripts build && mv build dist",
     "now": "now && now alias motuiti.iwzr.fr"
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "eslintConfig": {
     "extends": "react-app"
   },

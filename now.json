@@ -3,7 +3,8 @@
   "version": 2,
   "alias": ["motuiti.iwzr.fr"],
   "env": {
-    "REACT_APP_GMAPS_API_KEY": "@google-maps-api-key"
+    "REACT_APP_GMAPS_API_KEY": "@google-maps-api-key",
+    "REDIS_URL": "@redis-url"
   },
   "builds": [
     { "src": "src/api/stores.js", "use": "@now/node" },

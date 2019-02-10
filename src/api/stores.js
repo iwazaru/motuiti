@@ -1,6 +1,7 @@
+import getSecondsToTomorrow from '../lib/getSecondsToTomorrow';
 import PlaceDesLibraires from '../lib/PlaceDesLibraires';
 import processIsbn from '../lib/processIsbn';
-import getSecondsToTomorrow from '../lib/getSecondsToTomorrow';
+import RedisCache from '../lib/RedisCache';
 
 const { parse } = require('url');
 
@@ -8,17 +9,42 @@ export default async (req, res) => {
   const { query } = parse(req.url, true);
   const { ean } = query;
   const date = Date.now();
+  const ttl = getSecondsToTomorrow();
 
   res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', `public, s-maxage=${getSecondsToTomorrow()}`);
+  res.setHeader('Cache-Control', `public, s-maxage=${ttl}`);
 
   try {
     const validEan = processIsbn(ean);
-    const stores = await PlaceDesLibraires.getStoresForEan(validEan);
-    process.stdout.write(`Sending response for ISBN ${validEan}`);
-    res.end(JSON.stringify({ ean, date, stores }));
+    const cacheKey = `stores:${ean}`;
+
+    let storesFromAPI = null;
+    let storesFromCache = null;
+
+    let usingCache = false;
+    const cache = new RedisCache(process.env.REDIS_URL);
+    const cachedResponse = await cache.open(cacheKey);
+
+    if (cachedResponse) {
+      usingCache = true;
+      storesFromCache = JSON.parse(cachedResponse);
+    } else {
+      process.stdout.write(
+        `Getting fresh response for ${ean} from PlaceDesLibraires API\n`
+      );
+      storesFromAPI = await PlaceDesLibraires.getStoresForEan(validEan);
+      cache.save(cacheKey, JSON.stringify(storesFromAPI), ttl);
+    }
+
+    cache.close();
+
+    const stores = storesFromCache || storesFromAPI;
+    const origin = usingCache ? 'Cache' : 'API';
+
+    process.stdout.write(`Sending response for ISBN ${validEan}\n`);
+    res.end(JSON.stringify({ ean, date, origin, stores }));
   } catch (error) {
-    process.stdout.write(`Sending error for invalid ISBN ${ean}`);
+    process.stdout.write(`Sending error for invalid ISBN ${ean}\n`);
     res.statusCode = 400;
     res.end(JSON.stringify({ error: error.message }));
   }
