@@ -2,6 +2,9 @@
   "name": "motuiti",
   "version": 2,
   "alias": ["motuiti.iwzr.fr"],
+  "env": {
+    "REACT_APP_GMAPS_API_KEY": "@google-maps-api-key"
+  },
   "builds": [
     { "src": "src/api/stores.js", "use": "@now/node" },
     { "src": "package.json", "use": "@now/static-build" }

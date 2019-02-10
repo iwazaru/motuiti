@@ -11,10 +11,10 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 ## Must have
 
 - About page
-- Tooltips
 - Handle errors in front & back ends
 - Handle fetching errors
 - Google Analytics
+- Tooltips
 
 ## Nice to have
 
