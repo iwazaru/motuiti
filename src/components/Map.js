@@ -156,9 +156,8 @@ export default class Map extends React.Component {
             searching={searching}
             locating={locating}
             located={located}
-            history={history}
           />
-          <div className="Map" style={{}}>
+          <div className="Map">
             <GoogleMapReact
               bootstrapURLKeys={{
                 key: process.env.REACT_APP_GMAPS_API_KEY
