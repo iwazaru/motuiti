@@ -13,6 +13,7 @@ import Geo from '../lib/Geo';
 import processIsbn from '../lib/processIsbn';
 
 import './Map.css';
+import AboutPage from './AboutPage';
 
 const DEFAULT_CENTER = {
   lat: 46.98140721416764,
@@ -175,6 +176,7 @@ export default class Map extends React.Component {
           </div>
           <Route path="/" exact render={bookSelector} />
           <Route path="/livre/:ean/" render={bookSelector} />
+          <Route path="/a-propos" render={AboutPage} />
         </React.Fragment>
       </Router>
     );

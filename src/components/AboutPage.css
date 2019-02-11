@@ -1,0 +1,34 @@
+.AboutPage-overlay {
+  background: rgba(0, 0, 0, .75);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1250;
+}
+
+.AboutPage {
+  background: white;
+  margin: 25px auto;
+  max-width: 450px;
+  padding: 1px 15px;
+  position: relative;
+  width: 100%;
+  z-index: 1500;
+}
+
+.AboutPage .close-button {
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.AboutPage h1 {
+  margin: .5em 0;
+}
+
+.AboutPage .instructions li {
+  margin: 10px 0;
+}

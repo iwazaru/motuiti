@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SearchFrom from './SearchForm';
 
 import './Header.css';
+import { Button } from './Button';
 
 export default function Header(props) {
   return (
@@ -12,6 +13,9 @@ export default function Header(props) {
         <Link to="/">motuiti</Link>
       </div>
       <SearchFrom {...props} />
+      <Link to="/a-propos">
+        <Button icon="fas fa-question" />
+      </Link>
     </div>
   );
 }
