@@ -1,7 +1,6 @@
 import redis from 'redis';
 
 export default class RedisCache {
-
   /**
    * Connect to Redis
    */

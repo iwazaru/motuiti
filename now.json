@@ -2,10 +2,12 @@
   "name": "motuiti",
   "version": 2,
   "alias": ["motuiti.iwzr.fr"],
+  "env": {
+    "REDIS_URL": "@redis-url"
+  },
   "build": {
     "env": {
-      "REACT_APP_GMAPS_API_KEY": "@google-maps-api-key",
-      "REDIS_URL": "@redis-url"
+      "REACT_APP_GMAPS_API_KEY": "@google-maps-api-key"
     }
   },
   "builds": [
