@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import SearchFrom from './SearchForm';
 
@@ -8,7 +9,7 @@ export default function Header(props) {
   return (
     <div className="Header">
       <div className="title">
-        <a href="https://motuiti.iwzr.fr">motuiti</a>
+        <Link to="/">motuiti</Link>
       </div>
       <SearchFrom {...props} />
     </div>

@@ -16,7 +16,7 @@ import './Map.css';
 
 const DEFAULT_CENTER = {
   lat: 46.98140721416764,
-  lng: 1.7822031499999865,
+  lng: 1.7822031499999865
 };
 const DEFAULT_ZOOM = 6;
 
@@ -31,10 +31,15 @@ export default class Map extends React.Component {
     locating: false,
     located: false,
     center: DEFAULT_CENTER,
-    zoom: DEFAULT_ZOOM,
+    zoom: DEFAULT_ZOOM
   };
 
   async getStores(query) {
+    if (typeof query === 'undefined') {
+      this.setState({ stores: [], center: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+      return;
+    }
+
     try {
       const ean = processIsbn(query);
 
@@ -59,7 +64,7 @@ export default class Map extends React.Component {
     navigator.geolocation.getCurrentPosition(position => {
       const userPosition = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lng: position.coords.longitude
       };
 
       this.setState({ userPosition, locating: false, located: true });
@@ -82,9 +87,9 @@ export default class Map extends React.Component {
       const { center, zoom } = Geo.getBounds([
         {
           lat: userPosition.lat,
-          lng: userPosition.lng,
+          lng: userPosition.lng
         },
-        closestStore,
+        closestStore
       ]);
 
       this.setState({ center, zoom: zoom - 1 });
@@ -114,7 +119,7 @@ export default class Map extends React.Component {
       userPosition,
       searching,
       locating,
-      located,
+      located
     } = this.state;
     let markers = null;
 
@@ -138,9 +143,9 @@ export default class Map extends React.Component {
       selectedStore = <Store {...store} />;
     }
 
-    const bookSelector = props => (
-      <BookSelector {...props} onLoad={ean => this.getStores(ean)} />
-    );
+    const bookSelector = props => {
+      return <BookSelector {...props} onLoad={ean => this.getStores(ean)} />;
+    };
 
     return (
       <Router history={history}>
@@ -156,7 +161,7 @@ export default class Map extends React.Component {
           <div className="Map" style={{}}>
             <GoogleMapReact
               bootstrapURLKeys={{
-                key: process.env.REACT_APP_GMAPS_API_KEY,
+                key: process.env.REACT_APP_GMAPS_API_KEY
               }}
               options={() => ({ fullscreenControl: false })}
               center={center}
@@ -169,6 +174,7 @@ export default class Map extends React.Component {
             </GoogleMapReact>
             {selectedStore}
           </div>
+          <Route path="/" exact render={bookSelector} />
           <Route path="/livre/:ean/" render={bookSelector} />
         </React.Fragment>
       </Router>
