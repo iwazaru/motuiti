@@ -10,10 +10,14 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
+- Change name
+- Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
 - Google Analytics
 - Add welcome message
+- Wait for Google Maps to load before loading app
+- Prefill search input when url param changes
 
 ## Nice to have
 
