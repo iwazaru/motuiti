@@ -7,7 +7,7 @@
   height: 50px;
   justify-content: space-between;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   text-align: center;
   top: 0;
   width: 100%;
@@ -23,6 +23,11 @@
   text-align: right;
 }
 
+.Header .version {
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+
 .Header .search-field {
   appearance: none;
   background: white;
@@ -31,16 +36,6 @@
   margin: 0 5px;
   padding: 5px;
   width: 130px;
-}
-
-.Header button {
-  appearance: none;
-  background: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 0 5px;
-  padding: 5px 7px;
 }
 
 @media (min-width: 500px) {
