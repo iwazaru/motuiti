@@ -27,7 +27,7 @@ export default function AboutPage() {
             </small>
             <br />
             Pas inspiré ? Essayez avec{' '}
-            <Link to="/livre/9782351786079">9782351786079</Link> !
+            <Link to="/search?q=9782351786079">9782351786079</Link> !
           </li>
           <li>
             Cliquez sur <span className="fas fa-search" /> pour lancer la

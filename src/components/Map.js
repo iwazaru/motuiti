@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import qs from 'query-string';
 
 import BookSelector from './BookSelector';
 import Pin from './Pin';
@@ -175,7 +176,7 @@ export default class Map extends React.Component {
             {selectedStore}
           </div>
           <Route path="/" exact render={bookSelector} />
-          <Route path="/livre/:ean/" render={bookSelector} />
+          <Route path="/search" render={bookSelector} />
           <Route path="/a-propos" render={AboutPage} />
         </React.Fragment>
       </Router>

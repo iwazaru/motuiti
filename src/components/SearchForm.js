@@ -19,7 +19,7 @@ class SearchForm extends React.Component {
 
     try {
       const ean = processIsbn(this.state.query);
-      this.props.history.push(`/livre/${ean}`);
+      this.props.history.push(`/search?q=${ean}`);
     } catch (error) {
       window.alert(error.message);
     }

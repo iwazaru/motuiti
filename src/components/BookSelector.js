@@ -1,4 +1,5 @@
 import React from 'react';
+import qs from 'query-string';
 
 class BookSelector extends React.Component {
   componentDidMount() {
@@ -6,14 +7,15 @@ class BookSelector extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.ean !== prevProps.match.params.ean) {
-      this.search()
+    if (this.props.location.search !== prevProps.location.search) {
+      this.search();
     }
   }
 
   search() {
-    const { ean } = this.props.match.params;
-    this.props.onLoad(ean);
+    const { search } = this.props.location;
+    const { q } = qs.parse(search);
+    this.props.onLoad(q);
   }
 
   render() {
