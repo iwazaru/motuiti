@@ -23,6 +23,11 @@
   text-align: right;
 }
 
+.Header .version {
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+
 .Header .search-field {
   appearance: none;
   background: white;
