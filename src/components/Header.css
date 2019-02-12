@@ -33,16 +33,6 @@
   width: 130px;
 }
 
-.Header button {
-  appearance: none;
-  background: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 0 5px;
-  padding: 5px 7px;
-}
-
 @media (min-width: 500px) {
   .Header .search-field {
     width: 200px;

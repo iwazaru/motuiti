@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './AboutPage.css';
 
@@ -25,6 +25,9 @@ export default function AboutPage() {
               le code barre, sur le site de l'éditeur ou chez un vendeur de
               livre en ligne.
             </small>
+            <br />
+            Pas inspiré ? Essayez avec{' '}
+            <Link to="/livre/9782351786079">9782351786079</Link> !
           </li>
           <li>
             Cliquez sur <span className="fas fa-search" /> pour lancer la

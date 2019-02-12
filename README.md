@@ -10,14 +10,14 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
-- About page
 - Handle errors in front & back ends
 - Handle fetching errors
 - Google Analytics
-- Tooltips
+- Add welcome message
 
 ## Nice to have
 
+- Tooltips
 - Add API response date in Redis cache
 - Show numbers of bookstores results after search
 - Regroup map markers into clusters
