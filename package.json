@@ -1,8 +1,8 @@
 {
-  "name": "motuiti",
+  "name": "walden",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://motuiti.iwzr.fr",
+  "proxy": "https://dev.walden.app",
   "dependencies": {
     "google-map-react": "^1.1.2",
     "history": "^4.7.2",
@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "now-build": "react-scripts build && mv build dist",
-    "now": "now && now alias motuiti.iwzr.fr"
+    "now": "now && now alias dev.walden.app"
   },
   "prettier": {
     "singleQuote": true

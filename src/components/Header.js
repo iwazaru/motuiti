@@ -10,10 +10,10 @@ export default function Header(props) {
   return (
     <div className="Header">
       <div className="title">
-        <Link to="/">motuiti</Link>{' '}
+        <Link to="/">walden</Link>{' '}
         <span className="version">
           <a
-            href="https://github.com/iwazaru/motuiti/releases"
+            href="https://github.com/iwazaru/walden/releases"
             target="_blank"
             rel="noopener noreferrer"
           >
