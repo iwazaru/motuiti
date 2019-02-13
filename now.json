@@ -1,7 +1,7 @@
 {
-  "name": "motuiti",
+  "name": "walden",
   "version": 2,
-  "alias": ["motuiti.iwzr.fr"],
+  "alias": ["walden.app"],
   "env": {
     "REDIS_URL": "@redis-url"
   },

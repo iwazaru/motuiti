@@ -2,7 +2,6 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import qs from 'query-string';
 
 import BookSelector from './BookSelector';
 import Pin from './Pin';

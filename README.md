@@ -1,19 +1,25 @@
-# Motuiti
+# walden
 
-Motuiti is an app that displays, for a given ISBN, bookshops that have the
+walden is an app that displays, for a given ISBN, bookshops that have the
 corresponding book available in stock on a map with geolocation.
 
 Book availability informations are updated once a day from french independant
 bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
-# TODO
+[Try it](https://walden.app)
+
+# Todo list
 
 ## Must have
 
+- Change name
+- Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
 - Google Analytics
 - Add welcome message
+- Wait for Google Maps to load before loading app
+- Prefill search input when url param changes
 
 ## Nice to have
 
