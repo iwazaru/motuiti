@@ -12,12 +12,13 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
+- Trim ISBN before search
 - Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
-- Google Analytics
 - Add welcome message
 - Wait for Google Maps to load before loading app
+- Google Analytics events
 
 ## Nice to have
 
@@ -35,9 +36,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Environnement variables
 
 Some environnement variables are mandatory to run this project.
+
+### Build time env var
+
 You can [define them in an .env file](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables#adding-development-environment-variables-in-env).
 
 - `REACT_APP_GMAPS_API_KEY`: [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+- `REACT_APP_GOOGLE_ANALYTICS_ID`: Google Analytics Property ID
+
+### Runtime env var
+
 - `REDIS_URL`: Redis connection url (used for caching)
 
 ## Available Scripts

@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import ReactGA from 'react-ga';
 
 import BookSelector from './BookSelector';
 import Pin from './Pin';
@@ -22,6 +23,17 @@ const DEFAULT_CENTER = {
 const DEFAULT_ZOOM = 6;
 
 const history = createBrowserHistory();
+
+const { REACT_APP_GOOGLE_ANALYTICS_ID } = process.env;
+if (REACT_APP_GOOGLE_ANALYTICS_ID) {
+  ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_ID);
+  ReactGA.pageview(window.location.pathname + window.location.search);
+
+  history.listen(function(location) {
+    ReactGA.set({ page: location.pathname + location.search });
+    ReactGA.pageview(location.pathname + location.search);
+  });
+}
 
 export default class Map extends React.Component {
   state = {
