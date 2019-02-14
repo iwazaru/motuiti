@@ -23,7 +23,7 @@ Array [
 
     it('handles json parsing error', async () => {
       expect(PlaceDesLibraires.getStoresForEan('bad json')).rejects.toEqual(
-        new SyntaxError('Unexpected token < in JSON at position 0')
+        new Error('Could not parse: <html>this is not json</html>')
       );
     });
   });

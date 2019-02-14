@@ -6,6 +6,11 @@ describe('processIsbn', () => {
     expect(ean).toBe('9782913039902');
   });
 
+  it('should process a valid ISBN-13 with spaces', () => {
+    const ean = processIsbn('978-2-913039-90-2 o');
+    expect(ean).toBe('9782913039902');
+  });
+
   it('should throw an error for an invalid ISBN', () => {
     const tested = () => processIsbn('978-2-913039-90');
     expect(tested).toThrow('Cet ISBN semble invalide.');
