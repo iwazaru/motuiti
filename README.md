@@ -8,18 +8,18 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 [Try it](https://walden.app)
 
+[Changelog](CHANGELOG.md)
+
 # Todo list
 
 ## Must have
 
-- Change name
 - Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
-- Google Analytics
 - Add welcome message
 - Wait for Google Maps to load before loading app
-- Prefill search input when url param changes
+- Google Analytics events from server
 
 ## Nice to have
 
@@ -32,15 +32,23 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - React components test
 - PropTypes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Environnement variables
 
 Some environnement variables are mandatory to run this project.
+
+### Build time env var
+
 You can [define them in an .env file](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables#adding-development-environment-variables-in-env).
 
 - `REACT_APP_GMAPS_API_KEY`: [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+- `REACT_APP_GOOGLE_ANALYTICS_ID`: Google Analytics Property ID
+
+### Runtime env var
+
 - `REDIS_URL`: Redis connection url (used for caching)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

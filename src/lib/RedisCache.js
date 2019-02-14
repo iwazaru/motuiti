@@ -10,7 +10,7 @@ export default class RedisCache {
     if (redisUrl) {
       this.redis = redis.createClient(redisUrl);
     } else {
-      process.stdout.write('No redis url found. Skipping.');
+      process.stdout.write('No redis url found. Skipping.\n');
     }
   }
 

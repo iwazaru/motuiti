@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import ReactGA from 'react-ga';
 
 import BookSelector from './BookSelector';
 import Pin from './Pin';
@@ -23,8 +24,20 @@ const DEFAULT_ZOOM = 6;
 
 const history = createBrowserHistory();
 
+const { REACT_APP_GOOGLE_ANALYTICS_ID } = process.env;
+if (REACT_APP_GOOGLE_ANALYTICS_ID) {
+  ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_ID);
+  ReactGA.pageview(window.location.pathname + window.location.search);
+
+  history.listen(function(location) {
+    ReactGA.set({ page: location.pathname + location.search });
+    ReactGA.pageview(location.pathname + location.search);
+  });
+}
+
 export default class Map extends React.Component {
   state = {
+    query: '',
     stores: [],
     selectedStoreIndex: null,
     userPosition: null,
@@ -37,18 +50,30 @@ export default class Map extends React.Component {
 
   async getStores(query) {
     if (typeof query === 'undefined') {
-      this.setState({ stores: [], center: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+      this.setState({
+        stores: [],
+        center: DEFAULT_CENTER,
+        zoom: DEFAULT_ZOOM
+      });
       return;
     }
 
     try {
       const ean = processIsbn(query);
 
-      this.setState({ stores: [], searching: true });
+      this.setState({
+        query,
+        stores: [],
+        searching: true
+      });
       const response = await fetch(`/api/stores/${ean}`);
       const { stores } = await response.json();
 
-      this.setState({ stores, searching: false, selectedStoreIndex: null });
+      this.setState({
+        stores,
+        searching: false,
+        selectedStoreIndex: null
+      });
       this.updateMapPosition();
     } catch (error) {
       window.alert(error.message);
@@ -57,7 +82,10 @@ export default class Map extends React.Component {
 
   onGeolocate() {
     if (this.state.located) {
-      this.setState({ userPosition: null, located: false });
+      this.setState({
+        userPosition: null,
+        located: false
+      });
       return;
     }
 
@@ -68,7 +96,11 @@ export default class Map extends React.Component {
         lng: position.coords.longitude
       };
 
-      this.setState({ userPosition, locating: false, located: true });
+      this.setState({
+        userPosition,
+        locating: false,
+        located: true
+      });
       this.updateMapPosition();
     });
   }
@@ -111,16 +143,36 @@ export default class Map extends React.Component {
     this.setState({ selectedStoreIndex });
   }
 
+  onSearchFieldChange(query) {
+    this.setState({ query });
+  }
+
+  onSearchFormSubmit(event) {
+    event.preventDefault();
+
+    if (this.state.query === '') {
+      return;
+    }
+
+    try {
+      const ean = processIsbn(this.state.query);
+      history.push(`/search?q=${ean}`);
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }
+
   render() {
     const {
       center,
-      zoom,
-      stores,
-      selectedStoreIndex,
-      userPosition,
-      searching,
+      located,
       locating,
-      located
+      query,
+      searching,
+      selectedStoreIndex,
+      stores,
+      userPosition,
+      zoom
     } = this.state;
     let markers = null;
 
@@ -152,17 +204,19 @@ export default class Map extends React.Component {
       <Router history={history}>
         <React.Fragment>
           <Header
-            onSearch={ean => this.getStores(ean)}
-            onGeolocate={coords => this.onGeolocate(coords)}
-            searching={searching}
-            locating={locating}
             located={located}
+            locating={locating}
+            onGeolocate={coords => this.onGeolocate(coords)}
+            onSearchFieldChange={event =>
+              this.onSearchFieldChange(event.target.value)
+            }
+            onSearchFormSubmit={event => this.onSearchFormSubmit(event)}
+            query={query}
+            searching={searching}
           />
           <div className="Map">
             <GoogleMapReact
-              bootstrapURLKeys={{
-                key: process.env.REACT_APP_GMAPS_API_KEY
-              }}
+              bootstrapURLKeys={{ key: process.env.REACT_APP_GMAPS_API_KEY }}
               options={() => ({ fullscreenControl: false })}
               center={center}
               zoom={zoom}

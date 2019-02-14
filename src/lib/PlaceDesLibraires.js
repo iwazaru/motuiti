@@ -6,10 +6,20 @@ export default class PlaceDesLibraires {
     const response = await fetch(
       `https://www.placedeslibraires.fr/getshoplist.php?ISBN=${ean}`
     );
-    const json = await response.json();
-    return PlaceDesLibraires.filterStores(json.shop).map(
-      PlaceDesLibraires.parseStore
-    );
+    const body = await response.text();
+
+    try {
+      const json = JSON.parse(body);
+      return PlaceDesLibraires.filterStores(json.shop).map(
+        PlaceDesLibraires.parseStore
+      );
+    } catch (error) {
+      process.stdout.write(
+        "An error occured while parsing Place des Libraires's response:\n"
+      );
+      process.stdout.write(`${body}\n`);
+      throw new Error(`Could not parse: ${body}`);
+    }
   }
 
   static filterStores(stores) {
@@ -35,7 +45,7 @@ export default class PlaceDesLibraires {
     phone,
     latitude,
     longitude,
-    logo,
+    logo
   }) {
     return {
       id,
@@ -46,7 +56,7 @@ export default class PlaceDesLibraires {
       phone,
       lat: parseFloat(latitude),
       lng: parseFloat(longitude),
-      logo,
+      logo
     };
   }
 }
