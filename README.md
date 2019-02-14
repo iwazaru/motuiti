@@ -8,17 +8,18 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 [Try it](https://walden.app)
 
+[Changelog](CHANGELOG.md)
+
 # Todo list
 
 ## Must have
 
-- Trim ISBN before search
 - Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
 - Add welcome message
 - Wait for Google Maps to load before loading app
-- Google Analytics events
+- Google Analytics events from server
 
 ## Nice to have
 
@@ -31,7 +32,6 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 - React components test
 - PropTypes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Environnement variables
 
@@ -47,6 +47,8 @@ You can [define them in an .env file](https://facebook.github.io/create-react-ap
 ### Runtime env var
 
 - `REDIS_URL`: Redis connection url (used for caching)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
