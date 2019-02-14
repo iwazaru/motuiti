@@ -18,7 +18,7 @@ export default class PlaceDesLibraires {
         "An error occured while parsing Place des Libraires's response:\n"
       );
       process.stdout.write(`${body}\n`);
-      throw error;
+      throw new Error(`Could not parse: ${body}`);
     }
   }
 
