@@ -71,7 +71,11 @@ export default class Map extends React.Component {
           Accept: 'application/json'
         }
       });
-      const { stores } = await response.json();
+      
+      const { stores, error } = await response.json();
+      if (error) {
+        throw new Error(error);
+      }
 
       this.setState({
         stores,

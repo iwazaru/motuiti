@@ -6,6 +6,11 @@ export default class PlaceDesLibraires {
     const response = await fetch(
       `https://www.placedeslibraires.fr/getshoplist.php?ISBN=${ean}`
     );
+
+    if (response.status !== 200) {
+      throw new Error(`Place des Libraires server responded with status code ${response.status}.`);
+    }
+
     const body = await response.text();
 
     try {
@@ -18,7 +23,7 @@ export default class PlaceDesLibraires {
         "An error occured while parsing Place des Libraires's response:\n"
       );
       process.stdout.write(`${body}\n`);
-      throw new Error(`Could not parse: ${body}`);
+      throw new Error(`Could not parse response from Place des Libraires: ${body}`);
     }
   }
 

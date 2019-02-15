@@ -1,5 +1,6 @@
 export default function fetch(url) {
   const response = {
+    status: url.includes('403') ? 403 : 200,
     text: () => {
       let text;
 
