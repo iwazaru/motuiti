@@ -66,7 +66,11 @@ export default class Map extends React.Component {
         stores: [],
         searching: true
       });
-      const response = await fetch(`/api/stores/${ean}`);
+      const response = await fetch(`/api/stores/${ean}`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      });
       const { stores } = await response.json();
 
       this.setState({
@@ -76,7 +80,13 @@ export default class Map extends React.Component {
       });
       this.updateMapPosition();
     } catch (error) {
-      window.alert(error.message);
+      if (error instanceof SyntaxError) {
+        window.alert("La réponse du serveur n'a pas pu être déchiffrée.");
+      } else {
+        window.alert(error.message);
+      }
+
+      console.error(error);
     }
   }
 
