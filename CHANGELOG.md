@@ -2,6 +2,7 @@
 
 ## DEV
 
+* Prevent error response to be cached
 * Improved handling JSON parsing error
 * Improved handling 403 error in stores API
 
