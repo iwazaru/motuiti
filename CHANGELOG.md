@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## DEV
+## 0.2.0 (2019-08-14)
 
 * Prevent error response to be cached
 * Improved handling JSON parsing error
