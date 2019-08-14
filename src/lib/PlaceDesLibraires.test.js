@@ -23,7 +23,13 @@ Array [
 
     it('handles json parsing error', async () => {
       expect(PlaceDesLibraires.getStoresForEan('bad json')).rejects.toEqual(
-        new Error('Could not parse: <html>this is not json</html>')
+        new Error('Could not parse response from Place des Libraires: <html>this is not json</html>')
+      );
+    });
+
+    it('handles 403 error from server', async () => {
+      expect(PlaceDesLibraires.getStoresForEan('403')).rejects.toEqual(
+        new Error('Place des Libraires server responded with status code 403.')
       );
     });
   });

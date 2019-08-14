@@ -12,7 +12,6 @@ export default async (req, res) => {
   const ttl = getSecondsToTomorrow();
 
   res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', `public, s-maxage=${ttl}`);
 
   try {
     const validEan = processIsbn(ean);
@@ -42,10 +41,11 @@ export default async (req, res) => {
     const origin = usingCache ? 'Cache' : 'API';
 
     process.stdout.write(`Sending response for ISBN ${validEan}\n`);
+    res.setHeader('Cache-Control', `public, s-maxage=${ttl}`);
     res.end(JSON.stringify({ ean, date, origin, stores }));
   } catch (error) {
-    process.stdout.write(`Sending error for invalid ISBN ${ean}\n`);
-    res.statusCode = 400;
+    process.stdout.write(`Error for EAN ${ean}: ${error.message}\n`);
+    res.statusCode = 500;
     res.end(JSON.stringify({ error: error.message }));
   }
 };
