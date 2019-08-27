@@ -14,6 +14,7 @@ bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
 
 ## Must have
 
+- AboutPage on mobile
 - Have some kind of spinner on map while searching
 - Handle errors in front & back ends
 - Handle fetching errors
