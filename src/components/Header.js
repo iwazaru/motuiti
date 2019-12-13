@@ -17,7 +17,7 @@ export default function Header(props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            0.2.1
+            0.2.2
           </a>
         </span>
       </div>
