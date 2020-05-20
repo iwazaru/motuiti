@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.3 (2020-05-20)
+
+- Upgrade dependencies to fix handlebars security issue
+
 ## 0.2.2 (2019-12-13)
 
 - Upgrade dependencies to fix serialize-javascript security flaw
