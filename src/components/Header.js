@@ -10,10 +10,10 @@ export default function Header(props) {
   return (
     <div className="Header">
       <div className="title">
-        <Link to="/">walden</Link>{' '}
+        <Link to="/">bookmap</Link>{' '}
         <span className="version">
           <a
-            href="https://github.com/iwazaru/walden/releases"
+            href="https://github.com/iwazaru/bookmap/releases"
             target="_blank"
             rel="noopener noreferrer"
           >

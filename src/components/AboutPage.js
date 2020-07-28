@@ -13,7 +13,7 @@ export default function AboutPage() {
         </Link>
         <h1>À propos</h1>
         <p>
-          <strong>walden</strong> affiche sur une carte les libraires qui
+          <strong>bookmap</strong> affiche sur une carte les libraires qui
           possède un certain livre en stock à partir de son code ISBN.
         </p>
         <ol className="instructions">
@@ -59,7 +59,7 @@ export default function AboutPage() {
           aussi le réserver sur le site Place des libraires.
         </p>
         <p>
-          <strong>walden</strong> a été conçu par{' '}
+          <strong>bookmap</strong> a été conçu par{' '}
           <a
             href="https://www.iwazaru.fr/"
             target="_blank"
@@ -72,7 +72,7 @@ export default function AboutPage() {
         <p>
           Son code source est sur{' '}
           <a
-            href="https://github.com/iwazaru/walden"
+            href="https://github.com/iwazaru/bookmap"
             target="_blank"
             rel="noopener noreferrer"
           >

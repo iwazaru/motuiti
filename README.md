@@ -1,12 +1,10 @@
-# walden
+# bookmap
 
-walden is an app that displays, for a given ISBN, bookshops that have the
+bookmap is an app that displays, for a given ISBN, bookshops that have the
 corresponding book available in stock on a map with geolocation.
 
 Book availability informations are updated once a day from french independant
 bookstores portal [Place des libraires](https://www.placedeslibraires.fr/).
-
-[Try it](https://walden.app)
 
 [Changelog](CHANGELOG.md)
 

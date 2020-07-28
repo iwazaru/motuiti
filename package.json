@@ -1,8 +1,7 @@
 {
-  "name": "walden",
+  "name": "bookmap",
   "version": "0.2.3",
   "private": true,
-  "proxy": "https://dev.walden.app",
   "dependencies": {
     "google-map-react": "^1.1.2",
     "history": "^4.7.2",
@@ -22,8 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "now-build": "react-scripts build && mv build dist",
-    "now": "now && now alias dev.walden.app"
+    "now-build": "react-scripts build && mv build dist"
   },
   "prettier": {
     "singleQuote": true
