@@ -1,7 +1,6 @@
 {
-  "name": "walden",
+  "name": "bookmap",
   "version": 2,
-  "alias": ["walden.app"],
   "env": {
     "REDIS_URL": "@redis-url"
   },
